@@ -17,7 +17,7 @@ body {
 
 #card {
     background-color: white;
-    width: 84vw;
+    width: 30vw;
     position: fixed;
     top: 10vh;
     padding: 1rem;
@@ -41,6 +41,12 @@ body {
             color: white;
             border-radius: 5px;
             border-style: none;
+            cursor: pointer;            
+        }
+
+        #agregar:hover {
+            background-color: rgb(10, 140, 40);
+            transform: scale(1.05);
         }
 
         #tareaInput {
@@ -50,6 +56,10 @@ body {
             border-style: solid;
             border-width: 1px;
             border-color: rgb(219, 219, 219);
+        }
+        #tareaInput:focus {
+            outline: none;
+            border-color: rgb(12, 167, 50);
         }
     }
     
@@ -65,6 +75,12 @@ body {
             color: white;
             border-radius: 5px;
             border-style: none;
+            cursor: pointer;
+        }
+
+        .deleteBtn:hover {
+            background-color: rgb(200, 0, 40);
+            transform: scale(1.05);
         }
     }
     
