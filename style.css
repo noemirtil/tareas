@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.2s ease-in-out;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 
 #card {
     background-color: white;
-    width: 30vw;
+    width: 84vw;
     position: fixed;
     top: 10vh;
     padding: 1rem;
@@ -41,7 +42,7 @@ body {
             color: white;
             border-radius: 5px;
             border-style: none;
-            cursor: pointer;            
+            cursor: pointer;
         }
 
         #agregar:hover {
@@ -57,18 +58,19 @@ body {
             border-width: 1px;
             border-color: rgb(219, 219, 219);
         }
+
         #tareaInput:focus {
             outline: none;
             border-color: rgb(12, 167, 50);
         }
     }
-    
+
     li {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         margin: 0.6rem;
-        
+
         .deleteBtn {
             padding: 0.3rem 0.6rem;
             background-color: rgb(233, 0, 48);
@@ -83,11 +85,11 @@ body {
             transform: scale(1.05);
         }
     }
-    
+
     hr {
         border: 1px solid rgb(241, 241, 241);
     }
-    
+
     hr:last-of-type {
         display: none;
     }
