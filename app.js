@@ -1,43 +1,75 @@
 // noemirtil
+const $btnGuardar = document.getElementById('btn-task'),
+    $list = document.getElementById('list'),
+    $inputTask = document.getElementById('task');
 
-function addTask() {
-    let nuevaTarea = document.getElementById("tareaInput").value;
+let tasks = [
+    // {id: 1, title: 'First task'}
+];
 
-    // alert si vacio
-    if (nuevaTarea === "") {
-        alert("Ingresa algo");
-        return
-    }
-    // si no vacio, crear una linea y un <hr>
-    let nuevaLinea = document.createElement("li");
-    let hr = document.createElement("hr");
-    // anadir el texto a la linea
-    nuevaLinea.innerText = nuevaTarea;
-    // anadir la linea a la <ul>
-    document.getElementById("lista").appendChild(nuevaLinea);
-    document.getElementById("lista").appendChild(hr);
-    // borrar la entrada
-    document.getElementById("tareaInput").value = ``;
-    // crear el boton de borrar la tarea
-    let borrar = document.createElement("button");
-    borrar.innerText = "X";
-    // asignarle una clase al boton
-    borrar.className = `deleteBtn`;
-    // agregarle el boton al elemento madre
-    nuevaLinea.appendChild(borrar);
-
-    function borrarLinea() {
-        this.parentElement.remove();
-    }
-    // asignarle al boton la funcion borrarLinea
-    borrar.addEventListener(`click`, borrarLinea);
+const getTask = () => {
+    // getTask creates and displays every object of the array
+    if (tasks.length) {
+        // Checks if the array tasks is not empty
+        $list.innerHTML = '';
+        // Cleans the list
+        tasks.forEach(el => {
+            // el stands for element
+            const $li = document.createElement('li');
+            const $hr = document.createElement("hr");
+            // creates a new list item and an <hr> for each element
+            $li.innerHTML = `<p>${el.title}</p>
+            <button id="delete-task" data-id="${el.id}" class="delete-task">X</button>`;
+            // prints the title of the task in the list item line
+            // adds a delete button to the line and assigns it the task id
+            $li.classList.add("items");
+            // adding the css class for styling
+            $list.appendChild($li);
+            $list.appendChild($hr);
+            // appending the list item to the list
+        })
+        // If the array tasks is empty:
+    } else $list.innerHTML = `<h4>No hay tareas pendientes</h4>`;
 }
 
-// Llama a la función 
-agregar.onclick = () => { addTask(); }
-// Llama a la función si el usuario presiona enter cuando la caja esta focus
-tareaInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-        agregar.onclick();
+const saveTask = () => {
+    // The function that makes btnGuardar save the inputTask into tasks array
+    if ($inputTask.value !== "") {
+        const task = {
+            id: new Date().getTime(),
+            // Generates a unique date id for every task
+            title: $inputTask.value
+            // Assigns the inputTask to the title
+        }
+        tasks.push(task);
+        // Sends the task to the array
+        $inputTask.value = "";
+        // Cleans the input
+        getTask();
+        // And creates the new line!
     }
+    else $list.innerHTML = `<h2>No se puede ingresar una tarea vacía</h2>
+    <h4>Aún no hay tareas pendientes</h4>`;
+}
+
+const deleteTask = (id) => {
+    // The function that will only show the tasks that weren't deleted
+    // console.log(id);
+    tasks = tasks.filter(el => parseInt(el.id) !== parseInt(id));
+    // console.log(newTask);
+    getTask();
+}
+
+document.addEventListener("DOMContentLoaded", (e) => getTask());
+// Makes sure that the script will execute only after the DOM has been charged.
+document.addEventListener("click", (e) => {
+    // listens to all click events
+    if (e.target === $btnGuardar) saveTask();
+    // if the target of the click event is btnGuardar, call saveTask
+    if (e.target.matches("#delete-task")) deleteTask(e.target.dataset.id);
+    // if the target of the click event is delete-task, 
+    // call deleteTask with the target's dataset.id passed as an argument
+});
+document.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") saveTask();
 });

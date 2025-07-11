@@ -1,15 +1,23 @@
 /* noemirtil */
 
+:root {
+    --backGray:#f8f8f8;
+    --borderGray: rgb(219, 219, 219);
+    --btnGreen: rgb(12, 167, 50);
+    --btnRed: rgb(233, 0, 48);
+    --rowGray: rgb(241, 241, 241);
+}
+
 * {
     list-style: none;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 body {
-    background-color: #f8f8f8;
+    background-color: var(--backGray);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -31,37 +39,50 @@ body {
         margin: 1rem;
     }
 
+    h2 {
+        color: var(--btnRed);
+        text-align: center;
+        font-size: 1rem;
+        margin: 1rem;
+    }
+    
+    h4 {
+        text-align: center;
+        font-size: 1rem;
+        margin: 1rem;
+    }
+
     #inputs {
         display: flex;
         gap: 0.5rem;
         margin-block: 1.2rem;
 
-        #agregar {
+        #btn-task {
             padding: 0.3rem 0.7rem;
-            background-color: rgb(12, 167, 50);
+            background-color: var(--btnGreen);
             color: white;
             border-radius: 5px;
             border-style: none;
             cursor: pointer;
         }
 
-        #agregar:hover {
-            background-color: rgb(10, 140, 40);
+        #btn-task:hover {
+            background-color: var(--btnGreen);
             transform: scale(1.05);
         }
 
-        #tareaInput {
+        #task {
             flex: 1;
             padding: 0.4rem;
             border-radius: 5px;
             border-style: solid;
             border-width: 1px;
-            border-color: rgb(219, 219, 219);
+            border-color: var(--borderGray)
         }
 
-        #tareaInput:focus {
+        #task:focus {
             outline: none;
-            border-color: rgb(12, 167, 50);
+            border-color: var(--btnGreen);
         }
     }
 
@@ -71,23 +92,23 @@ body {
         align-items: baseline;
         margin: 0.6rem;
 
-        .deleteBtn {
+        .delete-task {
             padding: 0.3rem 0.6rem;
-            background-color: rgb(233, 0, 48);
+            background-color: var(--btnRed);
             color: white;
             border-radius: 5px;
             border-style: none;
             cursor: pointer;
         }
 
-        .deleteBtn:hover {
-            background-color: rgb(200, 0, 40);
-            transform: scale(1.05);
+        .delete-task:hover {
+            background-color: var(--btnRed);
+            transform: scale(1.1);
         }
     }
 
     hr {
-        border: 1px solid rgb(241, 241, 241);
+        border: 1px solid var(--rowGray);
     }
 
     hr:last-of-type {
